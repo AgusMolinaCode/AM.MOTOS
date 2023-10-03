@@ -1,0 +1,42 @@
+---
+import Layout from "../layouts/Layout.astro";
+import CarouselHero from "../components/UI/Carousel";
+import SliderInfinite from "../components/UI/SliderInfinite";
+import "@fontsource-variable/outfit";
+import Cards from "../components/Cards.astro";
+import Landing from "../components/Landing.astro";
+import Footer from "../components/Footer.astro";
+---
+
+<Layout title="AM MOTOS - Repuestos Importados">
+  <main>
+    <div class="pt-3 md:pt-7">
+      <CarouselHero client:visible />
+      <div class="max-w-2xl mx-auto">
+        <h1 class="px-2 font-outfit text-center text-3xl sm:text-5xl pt-20">
+          Estas buscando repuestos de calidad para tu <span
+            class="font-bold text-deep-orange-500">moto</span
+          > o <span class="font-bold text-deep-purple-500">atv</span>?
+        </h1>
+      </div>
+      <div class="max-w-4xl mx-auto">
+        <p
+          class="px-2 font-outfit font-medium text-center text-lg sm:text-2xl pt-5"
+        >
+          "Cuando se trata de repuestos y accesorios de motos, somos tu destino
+          número uno. En nuestro negocio de importación, nos enorgullece ofrecer
+          a nuestros clientes una selección incomparable de productos de alta
+          calidad que garantizan el rendimiento, la seguridad y la durabilidad.
+          Ya sea que busques repuestos originales de fabricantes de renombre o
+          alternativas de primer nivel, nuestra misión es proporcionarte
+          opciones confiables que mantengan tu vehículo en su mejor forma. Así
+          que no esperes más, ven a visitarnos y experimenta la diferencia que
+          ofrecemos."
+        </p>
+      </div>
+    </div>
+    <SliderInfinite />
+    <Cards />
+    <Landing />
+  </main>
+</Layout>

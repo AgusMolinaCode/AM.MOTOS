@@ -1,0 +1,58 @@
+---
+import { Image } from "astro:assets";
+import img1 from "./assets/img1.jpg";
+import img2 from "./assets/img2.jpg";
+import img3 from "./assets/img3.jpg";
+import img4 from "./assets/img4.jpg";
+
+const Imagenes = [
+  {
+    src: img1,
+    alt: "Imagen Repuestos",
+    title: "Motocross",
+    desc: "Rendimiento sin límites: Descubre los mejores repuestos para motocross",
+  },
+  {
+    src: img2,
+    alt: "Imagen Repuestos",
+    title: "Touring",
+    desc: "Explora el mundo con confianza: Encuentra los repuestos más destacados para touring",
+  },
+  {
+    src: img3,
+    alt: "Imagen Repuestos",
+    title: "ATV",
+    desc: "Domina cualquier terreno: Mejores repuestos para tu ATV a tu alcance",
+  },
+  {
+    src: img4,
+    alt: "Imagen Repuestos",
+    title: "Racing",
+    desc: "Potencia y personalización: Repuestos especiales para llevar tu moto al siguiente nivel",
+  },
+  
+];
+---
+
+<div
+  class="grid md:grid-cols-2 px-2 lg:grid-cols-4 justify-center py-14 sm:py-28 gap-8 sm:gap-2"
+>
+  {
+    Imagenes.map((imagen) => (
+      <div class="mx-auto bg-gray-300 p-4 rounded-2xl shadow-2xl border border-gray-400">
+        <div class="">
+            <Image
+            src={imagen.src}
+            alt={imagen.alt}
+            width={400}
+            height={300}
+            class="rounded-2xl border border-black"
+            />
+            </div>
+            <h1 class="text-3xl text-black font-formula">{imagen.title}</h1>
+            <p class="text-lg text-gray-700 font-outfit max-w-sm">{imagen.desc}</p>
+            <a href="/catalogos" class="text-lg text-blue-500 font-outfit">Ver más</a>
+      </div>
+    ))
+  }
+</div>

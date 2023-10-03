@@ -1,0 +1,129 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { Image } from "astro:assets";
+import Apparel2 from "../components/assets/Apparel2.jpeg";
+import Apparel from "../components/assets/Apparel.jpeg";
+import HardDrive from "../components/assets/HardDrive.jpeg";
+import Offroad from "../components/assets/Offroad.jpeg";
+import Street from "../components/assets/Street.jpeg";
+import Tires from "../components/assets/Tires.jpeg";
+import Watercraft from "../components/assets/Watercraft.jpeg";
+import Alpine from "../components/assets/Alpine.jpeg";
+import ATV from "../components/assets/ATV.jpeg";
+import FLY from "../components/assets/FLY.jpeg";
+import bici from "../components/assets/bici.jpeg";
+import FLYS from "../components/assets/FLYS.jpeg";
+
+import ejemplo1 from "../components/assets/ejemplo1.png";
+---
+
+<Layout title="AM MOTOS - Catalogos">
+  <main>
+    <div>
+      <h1 class="text-4xl text-center font-bold mt-16 font-outfit">
+        Catalogos
+      </h1>
+      <p class="text-center text-xl mt-4 font-outfit font-bold">
+        Aqui encontraras los catalogos de las marcas que distribuimos.
+      </p>
+      <div class="mx-auto flex justify-center py-4">
+        <div>
+          <h2 class="font-outfit text-3xl py-2 font-bold">
+            Como cotizar tu repuesto?
+          </h2>
+          <p class="py-2 font-outfit text-xl max-w-md text-gray-800">
+            Dentro de nuestros catalogos encontrarás los repuestos que necesitas, una vez que los
+            encuentres, copia el código <span class="text-black font-bold"
+              >"WPS#"</span
+            > y encuentra todos los detalles en nuestro buscador de <a href="/cotizaciones" class="text-black font-bold underline">cotizaciones</a>.
+          </p>
+        </div>
+        <Image
+          src={ejemplo1}
+          alt="Imagen de ejemplo cotizacion"
+          class=""
+          width={320}
+          height={320}
+        />
+      </div>
+    </div>
+    <div
+      class="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 justify-center content-center mx-auto gap-4 max-w-[1100px] mt-16"
+    >
+      {
+        [
+          {
+            src: ATV,
+            alt: "ATV Catalog",
+            href: "http://catalogs.wps-inc.com/2024/atv/",
+          },
+          {
+            src: Offroad,
+            alt: "Offroad Catalog",
+            href: "http://catalogs.wps-inc.com/2023/offroad/",
+          },
+          {
+            src: Street,
+            alt: "Street Catalog",
+            href: "http://catalogs.wps-inc.com/2023/street/",
+          },
+          {
+            src: Alpine,
+            alt: "Alpine Catalog",
+            href: "http://catalogs.wps-inc.com/2024/alpinestars/",
+          },
+          {
+            src: Apparel2,
+            alt: "Apparel Catalog",
+            href: "http://catalogs.wps-inc.com/2023/apparel/",
+          },
+          {
+            src: Apparel,
+            alt: "Apparel 2 Catalog",
+            href: "http://catalogs.wps-inc.com/2023/apparel-supp/",
+          },
+          {
+            src: HardDrive,
+            alt: "Hard Drive Catalog",
+            href: "http://catalogs.wps-inc.com/2023/vtwin/",
+          },
+          {
+            src: Tires,
+            alt: "Tires Catalog",
+            href: "http://catalogs.wps-inc.com/2023/tires/",
+          },
+          {
+            src: Watercraft,
+            alt: "Watercraft Catalog",
+            href: "http://catalogs.wps-inc.com/2023/watercraft/",
+          },
+          {
+            src: FLY,
+            alt: "FLY Catalog",
+            href: "http://catalogs.wps-inc.com/2024/fly_mx/",
+          },
+          {
+            src: bici,
+            alt: "Bicycle Catalog",
+            href: "http://catalogs.wps-inc.com/2023/bicycle/",
+          },
+          {
+            src: FLYS,
+            alt: "FLY Catalog Street",
+            href: "http://catalogs.wps-inc.com/2023/flystreet/",
+          }
+        ].map((item) => (
+          <a href={item.href} target="_blank" rel="noopener noreferrer">
+            <Image
+              src={item.src}
+              alt={item.alt}
+              width={400}
+              height={400}
+              class="mx-auto flex justify-center rounded-2xl"
+            />
+          </a>
+        ))
+      }
+    </div>
+  </main>
+</Layout>

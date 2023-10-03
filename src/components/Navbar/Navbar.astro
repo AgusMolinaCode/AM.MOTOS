@@ -1,0 +1,114 @@
+---
+import Dropdown from "./Dropdown.astro";
+import {
+  Astronav,
+  MenuItems,
+  MenuIcon,
+  OpenIcon,
+  CloseIcon,
+} from "astro-navbar";
+
+import { Image } from "astro:assets";
+
+import "@fontsource/racing-sans-one";
+import "@fontsource-variable/outfit";
+
+interface MenuItem {
+  title: string;
+  path: string;
+  children?: MenuItem[];
+}
+
+const menuitems: MenuItem[] = [
+  {
+    title: "Catalogos",
+    path: "/catalogos",
+  },
+];
+---
+
+<header
+  class="flex flex-col lg:flex-row justify-between items-center my-5 px-5 md:px-10 lg:px-24 xl:px-40"
+>
+  <Astronav>
+    <div class="flex w-full lg:w-auto items-center justify-between">
+      <a href="/" class="text-lg flex items-center gap-2">
+        
+        <span
+          class="font-bold text-slate-800 font-formula text-2xl md:text-4xl hover:underline"
+          >AM MOTOS</span
+        >
+      </a>
+      <div class="block lg:hidden">
+        <MenuIcon class="text-gray-800 flex justify-end items-center">
+          <OpenIcon>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="2em"
+              height="2em"
+              viewBox="0 0 24 24"
+              ><g fill="currentColor"
+                ><path
+                  d="M8 6.983a1 1 0 1 0 0 2h8a1 1 0 1 0 0-2H8ZM7 12a1 1 0 0 1 1-1h8a1 1 0 1 1 0 2H8a1 1 0 0 1-1-1Zm1 3.017a1 1 0 1 0 0 2h8a1 1 0 1 0 0-2H8Z"
+                ></path><path
+                  fill-rule="evenodd"
+                  d="M22 12c0 5.523-4.477 10-10 10S2 17.523 2 12S6.477 2 12 2s10 4.477 10 10Zm-2 0a8 8 0 1 1-16 0a8 8 0 0 1 16 0Z"
+                  clip-rule="evenodd"></path></g
+              ></svg
+            >
+          </OpenIcon>
+          <CloseIcon>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="2em"
+              height="2em"
+              viewBox="0 0 20 20"
+              ><path
+                fill="currentColor"
+                d="M2.93 17.07A10 10 0 1 1 17.07 2.93A10 10 0 0 1 2.93 17.07zM11.4 10l2.83-2.83l-1.41-1.41L10 8.59L7.17 5.76L5.76 7.17L8.59 10l-2.83 2.83l1.41 1.41L10 11.41l2.83 2.83l1.41-1.41L11.41 10z"
+              ></path></svg
+            >
+          </CloseIcon>
+        </MenuIcon>
+      </div>
+    </div>
+    <MenuItems class="hidden w-full lg:w-auto mt-2 lg:flex lg:mt-0">
+      <ul class="flex flex-col lg:flex-row lg:gap-3">
+        {
+          menuitems.map((item, index) => (
+            <>
+              {item.children && (
+                <Dropdown
+                  title={item.title}
+                  children={item.children}
+                  lastItem={index === menuitems.length - 1}
+                />
+              )}
+
+              {!item.children && (
+                <li>
+                  <a
+                    href={item.path}
+                    class="flex lg:px-3 py-2 text-black hover:underline duration-200 font-formula font-bold text-2xl"
+                  >
+                    {item.title}
+                  </a>
+                </li>
+              )}
+            </>
+          ))
+        }
+        <li>
+          <a
+            href="/cotizaciones"
+            class="flex lg:px-3 text-black border border-black p-1 rounded-2xl duration-200 font-formula font-bold text-2xl bg-gray-900"
+          >
+            <span class="text-white hover:underline underline-white"
+              >Cotizaciones</span
+            >
+          </a>
+        </li>
+      </ul>
+    </MenuItems>
+  </Astronav>
+</header>

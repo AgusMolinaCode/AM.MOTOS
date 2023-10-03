@@ -1,0 +1,102 @@
+---
+import { Image } from "astro:assets";
+import whatsapp from "../../src/icons/whatsapp.svg";
+import facebook1 from "../../src/icons/facebook1.svg";
+import instagram from "../../src/icons/instagram.svg";
+import time from "../../src/icons/time.svg";
+import location from "../../src/icons/location.svg";
+import phone from "../../src/icons/phone.svg";
+---
+
+<footer class="pt-24">
+  <div class="border-t border-black bg-[#4b4c73]">
+    <div class="grid content-center justify-center md:flex md:flex-wrap">
+      <div class="m-4">
+        <Image src="/escudo.png" alt="AM MOTOS" width={550} height={550} quality={'low'}/>
+      </div>
+      <div class="border-r-2 border-white m-4 hidden xl:block"></div>
+      <div class="flex-col justify-center items-center mx-auto pt-4">
+        <p
+          class="max-w-[600px] mx-auto flex justify-center text-center font-outfit text-gray-100 text-lg"
+        >
+          ¡No dude en ponerse en contacto con nosotros hoy mismo para obtener
+          más información sobre cómo podemos ayudarlo con sus necesidades de
+          importación de repuestos de motos!
+        </p>
+        <div class="2xl:flex justify-center pt-5 gap-4 mx-auto">
+          <div class="flex justify-center items-center">
+            <a
+              href="tel:1159474844"
+              target="_blank"
+              class="p-2 rounded-2xl font-formula text-3xl hover:text-red-300 duration-200 flex gap-2 items-center justify-center text-white"
+            >
+            <Image src={phone} alt="Phone Logo" class="flex-shrink" />
+            1159474844
+            </a>
+          </div>
+          <div class="flex justify-center items-center">
+            <a
+              href="https://www.google.com/maps/place/Alsina+112,+B1629EXD+Pilar+Centro,+Provincia+de+Buenos+Aires/@-34.4543912,-58.7373238,17z/data=!4m6!3m5!1s0x95bc9cd4f8b5d8c1:0x4dc2413db1e08dc0!8m2!3d-34.4530865!4d-58.9178309!16s%2Fg%2F11jm8sl8kf?entry=ttu"
+              target="_blank"
+              class="p-2 rounded-2xl font-formula text-3xl hover:text-blue-300 duration-200 flex gap-2 items-center justify-center text-white"
+            >
+              <Image src={location} alt="Location Logo" class="flex-shrink" />
+               Alsina 112 - Pilar
+            </a>
+          </div>
+          <div class="flex justify-center items-center">
+            <a
+              href="https://www.google.com/maps/place/Alsina+112,+B1629EXD+Pilar+Centro,+Provincia+de+Buenos+Aires/@-34.4543912,-58.7373238,17z/data=!4m6!3m5!1s0x95bc9cd4f8b5d8c1:0x4dc2413db1e08dc0!8m2!3d-34.4530865!4d-58.9178309!16s%2Fg%2F11jm8sl8kf?entry=ttu"
+              target="_blank"
+              class="p-2 rounded-2xl font-formula text-3xl hover:text-orange-300 duration-200 flex gap-2 items-center justify-center text-white"
+            >
+            <Image src={time} alt="Time Logo" class="flex-shrink" />
+            8.00 - 19.00
+            </a>
+          </div>
+        </div>
+        <div class="border border-white m-2"></div>
+        <div class="flex flex-wrap gap-4 mx-auto justify-center">
+          <a
+            href="https://www.facebook.com/AM.MOTOSPILAR"
+            target="_blank"
+            class="p-2 rounded-2xl font-formula text-3xl hover:text-blue-300 duration-200 flex gap-2 items-center justify-center text-white"
+          >
+            <Image src={facebook1} alt="Facebook Logo" class="flex-shrink" />
+             Facebook
+          </a>
+          <a
+            href="https://www.instagram.com/am.motos1"
+            target="_blank"
+            class="p-2 rounded-2xl font-formula text-3xl hover:text-orange-300 duration-200 flex gap-2 items-center justify-center text-white"
+          >
+            <Image src={instagram} alt="Instagram Logo" class="flex-shrink" />
+             Instagram
+          </a>
+        </div>
+        <div
+          class="bg-[#3d4699] rounded-2xl border border-black flex flex-wrap justify-center mx-auto items-center gap-4 p-2 max-w-lg px-2 mt-5 mb-10"
+        >
+          <div class="flex flex-col">
+            <p class="font-outfit text-lg text-center text-gray-300">
+              Estamos para ayudarte!
+            </p>
+            <h1 class="font-formula text-3xl text-center text-gray-300">
+              CONTACTANOS HOY
+            </h1>
+          </div>
+          <div>
+            <a
+              href="https://wa.link/4ylxhs"
+              target="_blank"
+              class="p-2 rounded-2xl border border-black font-formula text-2xl bg-green-200 hover:bg-green-700 hover:text-white duration-200 flex items-center justify-center hover:shadow-2xl gap-2 animate-bounce"
+            >
+              <Image src={whatsapp} alt="Whatsapp" class="flex-shrink" />
+               Whatsapp
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
