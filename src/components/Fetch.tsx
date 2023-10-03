@@ -17,7 +17,7 @@ function Fetch() {
       const myHeaders = new Headers();
       myHeaders.append(
         "Authorization",
-        `Bearer ${import.meta.env.WPS_PASSWORD}`
+        import.meta.env.PUBLIC_WPS as string
       );
 
       const requestOptions = {
