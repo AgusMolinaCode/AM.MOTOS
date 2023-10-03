@@ -8,7 +8,6 @@ import {
   CloseIcon,
 } from "astro-navbar";
 
-import { Image } from "astro:assets";
 
 import "@fontsource/racing-sans-one";
 import "@fontsource-variable/outfit";
@@ -24,6 +23,10 @@ const menuitems: MenuItem[] = [
     title: "Catalogos",
     path: "/catalogos",
   },
+  {
+    title: "Cotizaciones",
+    path: "/cotizaciones",
+  }
 ];
 ---
 
@@ -98,7 +101,7 @@ const menuitems: MenuItem[] = [
             </>
           ))
         }
-        <li>
+        <!-- <li>
           <a
             href="/cotizaciones"
             class="flex lg:px-3 text-black border border-black p-1 rounded-2xl duration-200 font-formula font-bold text-2xl bg-gray-900"
@@ -107,7 +110,7 @@ const menuitems: MenuItem[] = [
               >Cotizaciones</span
             >
           </a>
-        </li>
+        </li> -->
       </ul>
     </MenuItems>
   </Astronav>

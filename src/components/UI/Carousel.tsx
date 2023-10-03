@@ -17,7 +17,7 @@ export default function App() {
         pagination={true}
         modules={[Pagination, Autoplay]}
         autoplay={{
-          delay: 4000,
+          delay: 2000,
           disableOnInteraction: false,
         }}
         className="mySwiper rounded-2xl shadow-md border border-blue-400"
