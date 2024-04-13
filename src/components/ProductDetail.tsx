@@ -6,8 +6,7 @@ const data = await fetch('https://criptoya.com/api/dolar').then((response) =>
   response.json()
 );
 
-const dolar = data.blue;
-console.log(dolar);
+const dolar = data.blue.ask;
 
 type ProductDetailProps = {
   product: ProductData;
@@ -37,7 +36,7 @@ const ProductDetail = ({ product }: ProductDetailProps) => {
   }
 
   const weightInKilos = product.weight / 2.20462;
-  const finalWeight = weightInKilos * 50;
+  const finalWeight = weightInKilos * 45;
   const finalPrice = (finalWeight + Number(product.list_price)) * dolar;
 
   return (
