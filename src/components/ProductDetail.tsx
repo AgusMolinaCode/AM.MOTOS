@@ -73,7 +73,7 @@ const ProductDetail = ({ product }: ProductDetailProps) => {
         </p>
         <div className="">
           <ReactWhatsapp
-            number="+541159474844"
+            number="+541150494936"
             message={`Hola! me interesa comprar este producto, id: ${product.sku}. Gracias!`}
             element="webview"
             className="my-5 p-1 rounded-xl flex justify-center mx-auto bg-green-400 hover:bg-green-500 duration-200 max-w-[14rem] cursor-pointer "
