@@ -8,7 +8,6 @@ import {
   CloseIcon,
 } from "astro-navbar";
 
-
 import "@fontsource/racing-sans-one";
 import "@fontsource-variable/outfit";
 
@@ -20,13 +19,17 @@ interface MenuItem {
 
 const menuitems: MenuItem[] = [
   {
+    title: "Tienda",
+    path: "https://am-motos-repuestos.com.ar",
+  },
+  {
     title: "Catalogos",
     path: "/catalogos",
   },
   {
     title: "Cotizaciones",
     path: "/cotizaciones",
-  }
+  },
 ];
 ---
 
@@ -36,7 +39,6 @@ const menuitems: MenuItem[] = [
   <Astronav>
     <div class="flex w-full lg:w-auto items-center justify-between">
       <a href="/" class="text-lg flex items-center gap-2">
-        
         <span
           class="font-bold text-slate-800 font-formula text-2xl md:text-4xl hover:underline"
           >AM MOTOS</span

@@ -36,7 +36,7 @@ const ProductDetail = ({ product }: ProductDetailProps) => {
   }
 
   const weightInKilos = product.weight / 2.20462;
-  const finalWeight = weightInKilos * 45;
+  const finalWeight = weightInKilos * 40;
   const finalPrice = (finalWeight + Number(product.list_price)) * dolar;
 
   return (
