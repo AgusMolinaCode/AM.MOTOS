@@ -1,18 +1,21 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import { Image } from "astro:assets";
-import Apparel2 from "../components/assets/Apparel2024-2.jpg";
+import Apparel2 from "../components/assets/Apparel3.jpg";
 import Apparel from "../components/assets/Apparel2024.jpg";
 import HardDrive from "../components/assets/HardDrive.jpeg";
 import Offroad from "../components/assets/Offroad2024.jpg";
 import Street from "../components/assets/Street2024.jpg";
 import Tires from "../components/assets/Tires2024.jpg";
 import Watercraft from "../components/assets/Watercraft2024.jpg";
-import Alpine from "../components/assets/Alpine.jpeg";
-import ATV from "../components/assets/ATV.jpeg";
-import FLY from "../components/assets/FLY.jpeg";
+import Alpine from "../components/assets/Alpine.jpg";
+import ATV from "../components/assets/ATV.jpg";
+import FLY from "../components/assets/FLY2.jpg";
 import bici from "../components/assets/Bicycle2024.jpg";
 import FLYS from "../components/assets/FLYS.jpeg";
+import Wiseco from "../components/assets/wiseco2.webp";
+import Prox1 from "../components/assets/prox3.png";
+import Prox2 from "../components/assets/prox4.png";
 
 import ejemplo1 from "../components/assets/ejemplo1.png";
 ---
@@ -32,10 +35,13 @@ import ejemplo1 from "../components/assets/ejemplo1.png";
             Como cotizar tu repuesto?
           </h2>
           <p class="py-2 font-outfit text-xl max-w-md text-gray-800">
-            Dentro de nuestros catalogos encontrarás los repuestos que necesitas, una vez que los
-            encuentres, copia el código <span class="text-black font-bold"
-              >"WPS#"</span
-            > y encuentra todos los detalles en nuestro buscador de <a href="/cotizaciones" class="text-black font-bold underline">cotizaciones</a>.
+            Dentro de nuestros catalogos encontrarás los repuestos que
+            necesitas, una vez que los encuentres, copia el código <span
+              class="text-black font-bold">"WPS#"</span
+            > y encuentra todos los detalles en nuestro buscador de <a
+              href="/cotizaciones"
+              class="text-black font-bold underline">cotizaciones</a
+            >.
           </p>
         </div>
         <Image
@@ -53,9 +59,19 @@ import ejemplo1 from "../components/assets/ejemplo1.png";
       {
         [
           {
+            src: Prox1,
+            alt: "Pro-x Dirt Catalog",
+            href: "https://www.pro-x.com/wp-content/uploads/2024/07/ProX-Catalog-2024-DIRT.pdf",
+          },
+          {
+            src: Prox2,
+            alt: "Pro-x Dirt Catalog",
+            href: "https://www.pro-x.com/wp-content/uploads/2024/07/ProX-Catalog-2024-ATV-UTV.pdf",
+          },
+          {
             src: ATV,
             alt: "ATV Catalog",
-            href: "http://catalogs.wps-inc.com/2024/atv/",
+            href: "http://catalogs.wps-inc.com/2025/atv/",
           },
           {
             src: Offroad,
@@ -70,17 +86,27 @@ import ejemplo1 from "../components/assets/ejemplo1.png";
           {
             src: Alpine,
             alt: "Alpine Catalog",
-            href: "http://catalogs.wps-inc.com/2024/alpinestars/",
+            href: "http://catalogs.wps-inc.com/2025/alpinestars/",
+          },
+          {
+            src: Wiseco,
+            alt: "Wiseco Catalog",
+            href: "https://issuu.com/racewinningbrands/docs/wiseco24_powersports_catalog_final_web?fr=sZjllZTYzMTM0Mjg",
           },
           {
             src: Apparel2,
             alt: "Apparel Catalog",
-            href: "http://catalogs.wps-inc.com/2024/apparel/",
+            href: "http://catalogs.wps-inc.com/2025/apparel/",
           },
           {
             src: Apparel,
             alt: "Apparel 2 Catalog",
             href: "http://catalogs.wps-inc.com/2024/apparel-supp/",
+          },
+          {
+            src: FLY,
+            alt: "FLY Catalog",
+            href: "http://catalogs.wps-inc.com/2025/fly_mx/",
           },
           {
             src: bici,
@@ -103,15 +129,10 @@ import ejemplo1 from "../components/assets/ejemplo1.png";
             href: "http://catalogs.wps-inc.com/2024/tires/",
           },
           {
-            src: FLY,
-            alt: "FLY Catalog",
-            href: "http://catalogs.wps-inc.com/2024/fly_mx/",
-          },
-          {
             src: FLYS,
             alt: "FLY Catalog Street",
             href: "http://catalogs.wps-inc.com/2023/flystreet/",
-          }
+          },
         ].map((item) => (
           <a href={item.href} target="_blank" rel="noopener noreferrer">
             <Image

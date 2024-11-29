@@ -1,3 +1,4 @@
 {
-    "tailwindCSS.rootFontSize": 15
+    "tailwindCSS.rootFontSize": 15,
+    "editor.fontSize": 13
 }

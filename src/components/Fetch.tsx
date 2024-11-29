@@ -15,10 +15,7 @@ function Fetch() {
       setSearched(false);
 
       const myHeaders = new Headers();
-      myHeaders.append(
-        "Authorization",
-        import.meta.env.PUBLIC_WPS as string
-      );
+      myHeaders.append("Authorization", import.meta.env.PUBLIC_WPS as string);
 
       const requestOptions = {
         method: "GET",
