@@ -64,10 +64,10 @@ function Fetch() {
           <input
             type="text"
             placeholder="Codigo WPS#"
-            className="border-2 p-2 border-black text-center font-bold text-xl md:text-2xl rounded-xl font-outfit pr-3 md:pr-8"
+            className="border-2 p-2 border-black text-center font-bold text-xl md:text-2xl rounded-xl font-outfit pr-3 md:pr-8 placeholder:text-xl"
             value={wpsCode}
             onChange={(e) => setWpsCode(e.target.value)}
-            onKeyDown={handleKeyDown} // Agrega el controlador de eventos onKeyDown
+            onKeyDown={handleKeyDown}
           />
           {wpsCode && (
             <button
@@ -96,12 +96,6 @@ function Fetch() {
         <div className="flex justify-center items-center">
           <img src="/Spinner2.svg" alt="Loading" />
         </div>
-      )}
-
-      {searched && !loading && !product && (
-        <p className="text-center text-2xl sm:text-3xl  mt-12 font-outfit font-bold max-w-md flex justify-center mx-auto">
-          No se encontró ningún producto con ese código WPS, intente nuevamente
-        </p>
       )}
 
       {product && <ProductDetail product={product} />}
