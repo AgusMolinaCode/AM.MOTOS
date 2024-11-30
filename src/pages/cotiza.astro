@@ -7,18 +7,19 @@ import Layout from "../layouts/Layout.astro";
 
 <Layout title="AM MOTOS - Novedades">
   <h1 class="font-formula text-center text-3xl md:text-5xl py-2 md:py-5">
-    Cotiza todos tus <span class="underline">Repuestos</span> en un solo lugar
+    Cotiza todos tus Repuestos<span class="underline"></span>
+    <img src="/src/components/assets/pro.avif" alt="Logo Prox" class="flex justify-center mx-auto my-2 w-[300px]" />
+     en un solo lugar
   </h1>
-  <p
-    class="text-center text-xl font-outfit mx-auto max-w-xl md:text-xl px-2"
-  >
-    Aqui encontraras los repuestos que necesitas, una vez que los encuentres, escribenos a nuestro whatsapp para coordinar el pago y envio.
+  <p class="text-center text-xl font-outfit mx-auto max-w-xl md:text-lg px-2 hidden md:block">
+    Cotiza directamente una de las marcas de repuestos más reconocidas en el
+    mundo del motocross y enduro. Importamos directamente desde USA , al mejor
+    precio del mercado.
   </p>
-  <SliderInfinite />
-    <div class="mt-4 px-2 mx-auto min-h-screen">
-        <div class="mx-auto pt-6  md:pt-0">
-        <FetchParts client:visible />
-        </div>
+  <!-- <SliderInfinite /> -->
+  <div class="mt-4 mx-auto">
+    <div class="mx-auto md:pt-0">
+      <FetchParts client:visible />
     </div>
-  
+  </div>
 </Layout>

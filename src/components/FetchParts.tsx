@@ -6,6 +6,7 @@ interface ScrapedData {
   title: string | null;
   price: string | null;
   imageUrl: string | null;
+  sku: string | null;
 }
 
 async function scrapeProX(partNumber: string): Promise<ScrapedData> {
@@ -19,13 +20,12 @@ async function scrapeProX(partNumber: string): Promise<ScrapedData> {
       $(".woocommerce-loop-product__title").first().text().trim() || null;
     const price = $(".woocommerce-Price-amount").first().text().trim() || null;
     const imageUrl = $("li.product img").first().attr("src") || null;
-
-    console.log("Image URL:", imageUrl);
-
-    return { title, price, imageUrl };
+    const sku = $(".price").text().trim() || null;
+    
+    return { title, price, imageUrl ,sku};
   } catch (error) {
     console.error("Error scraping data:", error);
-    return { title: null, price: null, imageUrl: null };
+    return { title: null, price: null, imageUrl: null, sku: null };
   }
 }
 
@@ -52,13 +52,25 @@ export default function FetchParts() {
     setScrapedData(null);
   };
 
-  return (
-    <div className="flex flex-col items-center p-6">
-      <h1 className="text-3xl font-bold text-gray-800 mb-6">
-        Pro-X Part Number Scraper
-      </h1>
+  const adjustPrice = (price: string | null, title: string | null): string | null => {
+    if (!price) return null;
+    let numericPrice = parseFloat(price.replace(/[^0-9.-]+/g, ""));
+    if (title && title.toLowerCase().includes("connecting rod")) {
+      numericPrice += 30;
+    } else if (title && title.toLowerCase().includes("basket")) {
+      numericPrice += 25;
+    }
+    return numericPrice.toFixed(2);
+  };
 
-      <div className="relative flex flex-wrap gap-2 items-center justify-center">
+  return (
+    <div className="flex flex-col items-center md:p-6">
+      {!loading && !scrapedData && (
+        <p className="text-black text-lg md:text-xl my-1 md:mt-8 font-outfit text-center">
+          Ingresa un numero de pieza del siguiente catalogo para buscarlo
+        </p>
+      )}
+      <div className="relative flex flex-wrap gap-2 items-center justify-center my-8">
         <div className="relative">
           <input
             type="text"
@@ -87,24 +99,29 @@ export default function FetchParts() {
       </div>
 
       {scrapedData && (
-        <div className="p-6 w-full max-w-lg">
+        <div className="p-6 w-full">
           {scrapedData.title ? (
-            <div>
-              <p className="text-lg font-semibold mb-2">
-                <span className="text-gray-600">Title:</span>{" "}
-                {scrapedData.title}
-              </p>
-              <p className="text-lg font-semibold mb-2">
-                <span className="text-gray-600">Price:</span>{" "}
-                {scrapedData.price}
-              </p>
-              {scrapedData.imageUrl && (
-                <img
-                  src={scrapedData.imageUrl}
-                  alt={scrapedData.title ?? "No Image"}
-                  className="w-full h-full rounded-lg shadow"
-                />
-              )}
+            <div className="flex gap-2 justify-center mx-auto">
+              <div>
+                {scrapedData.imageUrl && (
+                  <img
+                    src={scrapedData.imageUrl}
+                    alt={scrapedData.title ?? "No Image"}
+                    className="w-full h-full rounded-lg shadow-lg"
+                  />
+                )}
+              </div>
+              <div className="">
+                <p className=" text-xl md:text-2xl text-center font-outfit font-bold mb-2">
+                  {scrapedData.title}
+                </p>
+                <p className="text-2xl font-semibold font-outfit mb-2">
+                {adjustPrice(scrapedData.price, scrapedData.title)}  Pesos
+                </p>
+                <p className="text-black text-lg font-outfit font-semibold">
+                  Codigo: {partNumber.toUpperCase()}
+                </p>
+              </div>
             </div>
           ) : (
             <p className="text-red-700 text-center text-lg font-semibold">
@@ -116,16 +133,61 @@ export default function FetchParts() {
       )}
 
       {loading && (
-        <p className="text-black text-lg font-semibold mt-4">
-          Buscando numero de pieza {partNumber}...
+        <p className="text-black text-lg font-semibold my-4">
+          Buscando numero de pieza: {partNumber}
         </p>
       )}
 
-      {!loading && !scrapedData && (
-        <p className="text-gray-500 text-lg font-semibold mt-4">
-          Ingresa un numero de pieza para buscar.
-        </p>
-      )}
+      <div
+        style={{
+          position: "relative",
+          paddingTop: "max(60%, 326px)",
+          height: 0,
+          width: "70%",
+        }}
+      >
+        <iframe
+          loading="lazy"
+          allow="clipboard-write"
+          sandbox="allow-top-navigation allow-top-navigation-by-user-activation allow-downloads allow-scripts allow-same-origin allow-popups allow-modals allow-popups-to-escape-sandbox allow-forms"
+          allowFullScreen
+          style={{
+            position: "absolute",
+            border: "none",
+            width: "100%",
+            height: "90%",
+            left: 0,
+            right: 0,
+            top: 0,
+            bottom: 0,
+          }}
+          src="https://e.issuu.com/embed.html?d=prox_catalog_2024&hideIssuuLogo=true&u=racewinningbrands"
+          data-rocket-lazyload="fitvidscompatible"
+          data-lazy-src="https://e.issuu.com/embed.html?d=prox_catalog_2024&hideIssuuLogo=true&u=racewinningbrands"
+          data-cmp-ab="2"
+          data-cmp-info="7"
+          data-ll-status="loaded"
+          className="entered lazyloaded"
+        />
+        <noscript>
+          <iframe
+            allow="clipboard-write"
+            sandbox="allow-top-navigation allow-top-navigation-by-user-activation allow-downloads allow-scripts allow-same-origin allow-popups allow-modals allow-popups-to-escape-sandbox allow-forms"
+            allowFullScreen
+            style={{
+              position: "absolute",
+              border: "none",
+              width: "100%",
+              height: "90%",
+              left: 0,
+              right: 0,
+              top: 0,
+              bottom: 0,
+            }}
+            src="https://e.issuu.com/embed.html?d=prox_catalog_2024&hideIssuuLogo=true&u=racewinningbrands"
+          />
+        </noscript>
+      </div>
     </div>
   );
 }
