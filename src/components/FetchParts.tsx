@@ -89,7 +89,7 @@ export default function FetchParts() {
     } else {
       numericPrice += 28;
     }
-    const adjustedPrice = numericPrice * dolar;
+    const adjustedPrice = numericPrice * dolar + 38000;
     return new Intl.NumberFormat("es-AR", {
       style: "currency",
       currency: "ARS",
@@ -111,7 +111,7 @@ export default function FetchParts() {
         <div className="relative">
           <input
             type="text"
-            placeholder="Enter part number"
+            placeholder="Numero de pieza Pro-x"
             value={partNumber}
             onKeyDown={handleKeyDown}
             onChange={handleInputChange}
