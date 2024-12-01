@@ -21,8 +21,8 @@ async function scrapeProX(partNumber: string): Promise<ScrapedData> {
     const price = $(".woocommerce-Price-amount").first().text().trim() || null;
     const imageUrl = $("li.product img").first().attr("src") || null;
     const sku = $(".price").text().trim() || null;
-    
-    return { title, price, imageUrl ,sku};
+
+    return { title, price, imageUrl, sku };
   } catch (error) {
     console.error("Error scraping data:", error);
     return { title: null, price: null, imageUrl: null, sku: null };
@@ -31,6 +31,7 @@ async function scrapeProX(partNumber: string): Promise<ScrapedData> {
 
 export default function FetchParts() {
   const [partNumber, setPartNumber] = useState("");
+  const [searchedPartNumber, setSearchedPartNumber] = useState("");
   const [scrapedData, setScrapedData] = useState<ScrapedData | null>(null);
   const [loading, setLoading] = useState(false);
 
@@ -38,6 +39,7 @@ export default function FetchParts() {
     setLoading(true);
     const data = await scrapeProX(partNumber);
     setScrapedData(data);
+    setSearchedPartNumber(partNumber);
     setLoading(false);
   };
 
@@ -63,6 +65,10 @@ export default function FetchParts() {
     return numericPrice.toFixed(2);
   };
 
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setPartNumber(e.target.value.toUpperCase());
+  };
+
   return (
     <div className="flex flex-col items-center md:p-6">
       {!loading && !scrapedData && (
@@ -77,7 +83,7 @@ export default function FetchParts() {
             placeholder="Enter part number"
             value={partNumber}
             onKeyDown={handleKeyDown}
-            onChange={(e) => setPartNumber(e.target.value)}
+            onChange={handleInputChange}
             className="border-2 p-2 border-black text-center font-bold text-xl md:text-2xl rounded-xl font-outfit pr-3 md:pr-8 placeholder:text-xl"
           />
           {partNumber && (
@@ -116,17 +122,17 @@ export default function FetchParts() {
                   {scrapedData.title}
                 </p>
                 <p className="text-2xl font-semibold font-outfit mb-2">
-                {adjustPrice(scrapedData.price, scrapedData.title)}  Pesos
+                  {adjustPrice(scrapedData.price, scrapedData.title)} Pesos
                 </p>
                 <p className="text-black text-lg font-outfit font-semibold">
-                  Codigo: {partNumber.toUpperCase()}
+                  Codigo: {searchedPartNumber.toUpperCase()}
                 </p>
               </div>
             </div>
           ) : (
             <p className="text-red-700 text-center text-lg font-semibold">
               No se encontraron resultados para el numero de pieza{" "}
-              <span className="font-bold">{partNumber}</span>.
+              <span className="font-bold">{searchedPartNumber}</span>.
             </p>
           )}
         </div>

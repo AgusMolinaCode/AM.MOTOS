@@ -30,10 +30,10 @@ const menuitems: MenuItem[] = [
     title: "Cotizaciones",
     path: "/cotizaciones",
   },
-  {
-    title: "Cotiza",
-    path: "/cotiza",
-  },
+  // {
+  //   title: "Cotiza",
+  //   path: "/cotiza",
+  // },
 ];
 ---
 
@@ -107,16 +107,18 @@ const menuitems: MenuItem[] = [
             </>
           ))
         }
-        <!-- <li>
+        <li>
           <a
-            href="/cotizaciones"
-            class="flex lg:px-3 text-black border border-black p-1 rounded-2xl duration-200 font-formula font-bold text-2xl bg-gray-900"
+            href="/cotiza"
+            class="flex"
           >
-            <span class="text-white hover:underline underline-white"
-              >Cotizaciones</span
-            >
+            <img
+              src="/src/components/assets/pro.avif"
+              alt="whatsapp"
+              class="w-40 h-14 animate-bounce hover:animate-none"
+            />
           </a>
-        </li> -->
+        </li>
       </ul>
     </MenuItems>
   </Astronav>

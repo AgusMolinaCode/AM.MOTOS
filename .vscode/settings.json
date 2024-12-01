@@ -1,4 +1,5 @@
 {
     "tailwindCSS.rootFontSize": 15,
-    "editor.fontSize": 13
+    "editor.fontSize": 13,
+    "files.autoSave": "afterDelay"
 }
