@@ -5,7 +5,8 @@ import SliderInfinite from "../components/UI/SliderInfinite";
 import "@fontsource-variable/outfit";
 import Cards from "../components/Cards.astro";
 import Landing from "../components/Landing.astro";
-import Footer from "../components/Footer.astro";
+import PROX from "../components/assets/pro.avif";
+import Image from "astro/components/Image.astro";
 ---
 
 <Layout title="AM MOTOS - Repuestos Importados">
@@ -26,11 +27,11 @@ import Footer from "../components/Footer.astro";
           Cotiza online productos ProX Japon 
         </p>
         <a
-            href="/cotiza"
+            href="/prox"
             class="flex md:hidden"
           >
-            <img
-              src="/public/pro.avif"
+            <Image
+              src={PROX}
               alt="whatsapp"
               class="w-40 h-14 animate-bounce hover:animate-none"
             />

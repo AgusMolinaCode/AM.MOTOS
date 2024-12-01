@@ -10,6 +10,8 @@ import {
 
 import "@fontsource/racing-sans-one";
 import "@fontsource-variable/outfit";
+import PROX from "../assets/pro.avif";
+import Image from "astro/components/Image.astro";
 
 interface MenuItem {
   title: string;
@@ -30,10 +32,6 @@ const menuitems: MenuItem[] = [
     title: "Cotizaciones",
     path: "/cotizaciones",
   },
-  // {
-  //   title: "Cotiza",
-  //   path: "/cotiza",
-  // },
 ];
 ---
 
@@ -109,11 +107,11 @@ const menuitems: MenuItem[] = [
         }
         <li>
           <a
-            href="/cotiza"
+            href="/prox"
             class="flex"
           >
-            <img
-              src="/public/pro.avif"
+            <Image
+              src={PROX}
               alt="Pro-x Logo"
               class="w-40 h-14 animate-bounce hover:animate-none"
             />

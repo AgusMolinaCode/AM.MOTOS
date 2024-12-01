@@ -1,6 +1,8 @@
 import axios from "axios";
 import * as cheerio from "cheerio";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import ProxCatalog from "./ProxCatalog";
+import ReactWhatsapp from "react-whatsapp";
 
 interface ScrapedData {
   title: string | null;
@@ -34,6 +36,22 @@ export default function FetchParts() {
   const [searchedPartNumber, setSearchedPartNumber] = useState("");
   const [scrapedData, setScrapedData] = useState<ScrapedData | null>(null);
   const [loading, setLoading] = useState(false);
+  const [dolar, setDolar] = useState<number | null>(null);
+
+  useEffect(() => {
+    const fetchDolar = async () => {
+      try {
+        const response = await fetch("https://criptoya.com/api/dolar");
+        const data = await response.json();
+        setDolar(data.blue.ask);
+        console.log("Dolar:", data.blue.ask);
+      } catch (error) {
+        console.error("Error fetching dolar:", error);
+      }
+    };
+
+    fetchDolar();
+  }, []);
 
   const handleSearch = async () => {
     setLoading(true);
@@ -54,15 +72,28 @@ export default function FetchParts() {
     setScrapedData(null);
   };
 
-  const adjustPrice = (price: string | null, title: string | null): string | null => {
-    if (!price) return null;
+  const adjustPrice = (
+    price: string | null,
+    title: string | null
+  ): string | null => {
+    if (!price || !dolar) return null;
     let numericPrice = parseFloat(price.replace(/[^0-9.-]+/g, ""));
     if (title && title.toLowerCase().includes("connecting rod")) {
-      numericPrice += 30;
+      numericPrice += 37;
     } else if (title && title.toLowerCase().includes("basket")) {
-      numericPrice += 25;
+      numericPrice += 32;
+    } else if (title && title.toLowerCase().includes("steel rear")) {
+      numericPrice += 32;
+    } else if (title && title.toLowerCase().includes("rollerchain")) {
+      numericPrice += 37;
+    } else {
+      numericPrice += 28;
     }
-    return numericPrice.toFixed(2);
+    const adjustedPrice = numericPrice * dolar;
+    return new Intl.NumberFormat("es-AR", {
+      style: "currency",
+      currency: "ARS",
+    }).format(adjustedPrice);
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -70,7 +101,7 @@ export default function FetchParts() {
   };
 
   return (
-    <div className="flex flex-col items-center md:p-6">
+    <div className="flex flex-col items-center  md:p-6">
       {!loading && !scrapedData && (
         <p className="text-black text-lg md:text-xl my-1 md:mt-8 font-outfit text-center">
           Ingresa un numero de pieza del siguiente catalogo para buscarlo
@@ -105,28 +136,49 @@ export default function FetchParts() {
       </div>
 
       {scrapedData && (
-        <div className="p-6 w-full">
+        <div className="p-2 md:p-6 flex justify-center mx-auto sm:w-full">
           {scrapedData.title ? (
-            <div className="flex gap-2 justify-center mx-auto">
+            <div className="flex flex-col sm:flex-row gap-2 justify-center mx-auto">
               <div>
                 {scrapedData.imageUrl && (
                   <img
                     src={scrapedData.imageUrl}
                     alt={scrapedData.title ?? "No Image"}
-                    className="w-full h-full rounded-lg shadow-lg"
+                    className="max-w-[400px] max-h-[400px] rounded-lg shadow-lg flex justify-center mx-auto"
                   />
                 )}
               </div>
-              <div className="">
-                <p className=" text-xl md:text-2xl text-center font-outfit font-bold mb-2">
+              <div className="mx-auto">
+                <p className=" text-xl md:text-2xl text-center md:text-left font-outfit font-bold mb-2">
                   {scrapedData.title}
                 </p>
-                <p className="text-2xl font-semibold font-outfit mb-2">
-                  {adjustPrice(scrapedData.price, scrapedData.title)} Pesos
+                <p className="text-2xl md:text-3xl text-center md:text-left font-bold font-outfit mb-2">
+                  {adjustPrice(scrapedData.price, scrapedData.title)} pesos
                 </p>
-                <p className="text-black text-lg font-outfit font-semibold">
+                <p className="text-black text-md text-center md:text-left font-outfit font-semibold">
                   Codigo: {searchedPartNumber.toUpperCase()}
                 </p>
+                <p className="text-black text-md text-center md:text-left font-outfit font-semibold">
+                  Demora de 20 a 25 dias habiles
+                </p>
+                <div className="flex justify-center md:justify-start">
+                  <ReactWhatsapp
+                    number="+541150494936"
+                    message={`Hola! me interesa comprar este producto Pro-x, ${searchedPartNumber.toUpperCase()}. Gracias!`}
+                    element="webview"
+                    className="my-3 p-1 rounded-xl flex bg-green-400 hover:bg-green-500 duration-200 max-w-[14rem] cursor-pointer "
+                  >
+                    <button className=" text-black font-bold text-xl md:text-2xl p-1 rounded-xl font-formula flex items-center gap-2">
+                      <img
+                        src="/whatsapp.svg"
+                        alt="Whatsapp Logo"
+                        width={30}
+                        height={30}
+                      />
+                      Consultar
+                    </button>
+                  </ReactWhatsapp>
+                </div>
               </div>
             </div>
           ) : (
@@ -144,56 +196,7 @@ export default function FetchParts() {
         </p>
       )}
 
-      <div
-        style={{
-          position: "relative",
-          paddingTop: "max(60%, 326px)",
-          height: 0,
-          width: "70%",
-        }}
-      >
-        <iframe
-          loading="lazy"
-          allow="clipboard-write"
-          sandbox="allow-top-navigation allow-top-navigation-by-user-activation allow-downloads allow-scripts allow-same-origin allow-popups allow-modals allow-popups-to-escape-sandbox allow-forms"
-          allowFullScreen
-          style={{
-            position: "absolute",
-            border: "none",
-            width: "100%",
-            height: "90%",
-            left: 0,
-            right: 0,
-            top: 0,
-            bottom: 0,
-          }}
-          src="https://e.issuu.com/embed.html?d=prox_catalog_2024&hideIssuuLogo=true&u=racewinningbrands"
-          data-rocket-lazyload="fitvidscompatible"
-          data-lazy-src="https://e.issuu.com/embed.html?d=prox_catalog_2024&hideIssuuLogo=true&u=racewinningbrands"
-          data-cmp-ab="2"
-          data-cmp-info="7"
-          data-ll-status="loaded"
-          className="entered lazyloaded"
-        />
-        <noscript>
-          <iframe
-            allow="clipboard-write"
-            sandbox="allow-top-navigation allow-top-navigation-by-user-activation allow-downloads allow-scripts allow-same-origin allow-popups allow-modals allow-popups-to-escape-sandbox allow-forms"
-            allowFullScreen
-            style={{
-              position: "absolute",
-              border: "none",
-              width: "100%",
-              height: "90%",
-              left: 0,
-              right: 0,
-              top: 0,
-              bottom: 0,
-            }}
-            src="https://e.issuu.com/embed.html?d=prox_catalog_2024&hideIssuuLogo=true&u=racewinningbrands"
-          />
-        </noscript>
-      </div>
+      <ProxCatalog />
     </div>
   );
 }

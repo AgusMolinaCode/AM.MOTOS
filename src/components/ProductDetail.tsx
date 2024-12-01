@@ -2,16 +2,14 @@ import { type ProductData } from "../types/api";
 import ReactWhatsapp from "react-whatsapp";
 import ImageDetails from "./ImageDetails";
 
-const data = await fetch('https://criptoya.com/api/dolar').then((response) =>
+type ProductDetailProps = {
+  product: ProductData;
+};
+const data = await fetch("https://criptoya.com/api/dolar").then((response) =>
   response.json()
 );
 
 const dolar = data.blue.ask;
-
-type ProductDetailProps = {
-  product: ProductData;
-};
-
 
 const ProductDetail = ({ product }: ProductDetailProps) => {
   let stockMessage = "";
@@ -59,7 +57,9 @@ const ProductDetail = ({ product }: ProductDetailProps) => {
             Stock USA:{" "}
             <span className="font-bold text-2x text-black">{stockMessage}</span>
           </p>
-          <p className="font-bold text-lg py-2 text-center font-outfit text-black">{stockShipping}</p>
+          <p className="font-bold text-lg py-2 text-center font-outfit text-black">
+            {stockShipping}
+          </p>
         </div>
         <p className="text-center text-lg text-gray-600 font-outfit font-semibold">
           Codigo WPS:{" "}
@@ -76,14 +76,14 @@ const ProductDetail = ({ product }: ProductDetailProps) => {
             number="+541150494936"
             message={`Hola! me interesa comprar este producto, id: ${product.sku}. Gracias!`}
             element="webview"
-            className="my-5 p-1 rounded-xl flex justify-center mx-auto bg-green-400 hover:bg-green-500 duration-200 max-w-[14rem] cursor-pointer "
+            className="my-3 p-1 rounded-xl flex bg-green-400 hover:bg-green-500 duration-200 max-w-[14rem] cursor-pointer "
           >
-            <button className=" text-black font-bold text-xl md:text-2xl p-2 rounded-xl font-formula flex items-center gap-2">
+            <button className=" text-black font-bold text-xl md:text-2xl p-1 rounded-xl font-formula flex items-center gap-2">
               <img
                 src="/whatsapp.svg"
                 alt="Whatsapp Logo"
-                width={40}
-                height={40}
+                width={30}
+                height={30}
               />
               Comprar
             </button>
@@ -97,7 +97,6 @@ const ProductDetail = ({ product }: ProductDetailProps) => {
             domain: datum.domain,
             path: datum.path,
             filename: datum.filename,
-            
           }))}
         />
       </div>

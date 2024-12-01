@@ -1,17 +1,23 @@
 ---
-import Fetch from "../components/Fetch";
 import FetchParts from "../components/FetchParts";
-import SliderInfinite from "../components/UI/SliderInfinite";
 import Layout from "../layouts/Layout.astro";
+import PROX from "../components/assets/pro.avif";
+import Image from "astro/components/Image.astro";
 ---
 
 <Layout title="AM MOTOS - Novedades">
   <h1 class="font-formula text-center text-3xl md:text-5xl py-2 md:py-5">
     Cotiza todos tus Repuestos<span class="underline"></span>
-    <img src="/src/components/assets/pro.avif" alt="Logo Prox" class="flex justify-center mx-auto my-2 w-[300px]" />
+    <Image
+      src={PROX}
+      alt="Logo Prox"
+      class="flex justify-center mx-auto my-2 w-[300px]"
+    />
      en un solo lugar
   </h1>
-  <p class="text-center text-xl font-outfit mx-auto max-w-xl md:text-lg px-2 hidden md:block">
+  <p
+    class="text-center text-xl font-outfit mx-auto max-w-xl md:text-lg px-2 hidden md:block"
+  >
     Cotiza directamente una de las marcas de repuestos más reconocidas en el
     mundo del motocross y enduro. Importamos directamente desde USA , al mejor
     precio del mercado.
