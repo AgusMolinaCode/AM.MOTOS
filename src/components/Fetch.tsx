@@ -94,7 +94,7 @@ function Fetch() {
 
       {loading && !product && (
         <div className="flex justify-center items-center">
-          <img src="/Spinner2.svg" alt="Loading" />
+          <img src="/Spinner2.svg" alt="Loading..." />
         </div>
       )}
 
